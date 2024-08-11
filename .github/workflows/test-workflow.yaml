@@ -23,3 +23,21 @@ jobs:
 
     - name: Run the test cases
       run: go test -v ./...
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Get the code from the repo
+      uses: actions/checkout@v3
+    
+    - name: Setting up the golang
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.22.4
+
+    - name: installing golang package and libraries
+      run: go mod tidy
+
+    - name: Create the app build
+      run: go build -o main main.go
