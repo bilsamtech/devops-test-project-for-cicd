@@ -42,3 +42,9 @@ jobs:
 
     - name: Create the app build
       run: go build -o main main.go
+
+    - name: Get the build file - Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: dist
+        path: main
