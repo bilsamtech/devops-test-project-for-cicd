@@ -5,13 +5,21 @@ on:
     branches:
       - main
 
-
 jobs:
-  greet:
+  test:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
 
-      - name: Greet
-        run: echo "Hello, DevOps Training!"
+    steps:
+    - name: Get the code from repo
+      uses: actions/checkout@v3
+
+    - name: Setting up the golang
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.22.4
+
+    - name: Installing packages/library
+      run: go mod tidy
+
+    - name: Run the test cases
+      run: go test -v ./...
